@@ -1,0 +1,79 @@
+﻿@model DemoMongoDb.UI.Models.AccountModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AccountModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModificationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModificationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkedImageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkedImageId)
+            <div id="ImageContainer" style="width:200px">
+                <img src="@Model.ImageSourceContent" style="max-width:100%" />
+            </div>
+        </dd>
+
+    </dl>
+    @if (Model.ImageSourceContent == null)
+    {
+        using (Html.BeginForm("ImportImage", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <label for="file">Upload Image:</label>
+            <input type="hidden" name="accountId" id="accountId" value="@Model.Id" />
+            <input type="file" name="file" id="file" /><br><br>
+            <input type="submit" value="Upload Image" />
+        }
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", "Home", null, null)
+</p>

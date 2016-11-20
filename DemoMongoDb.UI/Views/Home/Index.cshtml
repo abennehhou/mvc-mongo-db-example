@@ -1,0 +1,57 @@
+﻿@using DemoMongoDb.UI.Models
+
+@model IEnumerable<AccountModel>
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+@Html.ActionLink("Create New Account", "Create", "Accounts", null, null)
+
+<table class="table">
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            @*<snippet_1>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Id }, null) |
+                @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Accounts", new { id = item.Id }, null)
+                @*<a asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</a>*@ |
+            </td>
+            @*</snippet_1>*@
+        </tr>
+    }
+</tbody>
+</table>
